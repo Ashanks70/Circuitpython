@@ -55,7 +55,27 @@ The largest difficulty was learning python syntax and how to make it work correc
 ### Description & Code
 
 ```python
-Code goes here
+import time
+import board
+import touchio
+import servo
+import pwmio
+pwm = pwmio.PWMOut(board.A4, duty_cycle=2 ** 15, frequency=50)
+my_servo = servo.Servo(pwm)
+touch_A1 = touchio.TouchIn(board.A1)  
+touch_A2 = touchio.TouchIn(board.A0)  
+A = 1
+while True:
+    if touch_A2.value and A < 180:
+        A += 1
+        print("hi")
+    if touch_A1.value and A > 0:
+        A -= 1
+        print("there")
+    my_servo.angle = A
+    time.sleep(0.005)
+    
+
 
 ```
 
