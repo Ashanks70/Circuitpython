@@ -47,11 +47,9 @@ print(r, g, b)
 Pictures / Gifs of your work should go here.  You need to communicate what your thing does.
 
 ### Wiring
-Make an account with your google ID at [tinkercad.com](https://www.tinkercad.com/learn/circuits), and use "TinkerCad Circuits to make a wiring diagram."  It's really easy!  
-Then post an image here.   [here's a quick tutorial for all markdown code, like making links](https://guides.github.com/features/mastering-markdown/)
-
+The only requirement is a board.
 ### Reflection
-The largest difficulty was learning python syntax and how to make it work correctly.
+The largest difficulty was learning python syntax and how to make it work correctly. I had to makke sure it was a += and a -= until I made it choose randomly
 
 
 
