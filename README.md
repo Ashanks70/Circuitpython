@@ -9,13 +9,10 @@
 
 ## Hello_CircuitPython
 
-testing123
-
 ### Description & Code
 
-This code makes a LED blink at random intervals with random colors.
+This code makes a LED slowly increase in color and slowly becomes more green.
 
-Here's how you make code look like code:
 ```python
 import board
 import neopixel
@@ -55,7 +52,7 @@ The largest difficulty was learning python syntax and how to make it work correc
 ## CircuitPython_Servo
 
 ### Description & Code
-
+this code uses capacitive touch to make the servo rotate.1
 ```python
 import time
 import board
