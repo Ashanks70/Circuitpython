@@ -16,6 +16,7 @@ This code makes a LED slowly increase in color and slowly becomes more green.
 ```python
 import board
 import neopixel
+import time
 
 dot = neopixel.NeoPixel(board.NEOPIXEL, 1)
 
@@ -27,14 +28,19 @@ g = 0
 b = 0
 while True:
 
-    if b < 160:
-        b + 4
-    if b == 160:
-        g = 4
+    if b < 240:
+        b += 4
+    if b == 240:
+        g += 4
         b = 0
+    if g == 240:
+        r += 4
+        g = 0
+        b = 0
+    
     dot.fill((r, g, b))
-print(r, g, b)
-
+    time.sleep(0.01)
+    print(r, g, b)
 ```
 
 
