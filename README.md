@@ -52,7 +52,7 @@ The largest difficulty was learning python syntax and how to make it work correc
 ## CircuitPython_Servo
 
 ### Description & Code
-this code uses capacitive touch to make the servo rotate.1
+this code uses capacitive touch to make the servo rotate
 ```python
 import time
 import board
@@ -81,7 +81,7 @@ while True:
 ### Evidence
 
 ### Wiring
-
+[servo](servo.png)
 ### Reflection
 Limits are a very good idea when you have a shifting number. forgetting them cost me a decent bit of time and was also stressful.
 
