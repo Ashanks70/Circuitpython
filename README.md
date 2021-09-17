@@ -46,7 +46,7 @@ while True:
 
 ### Evidence
 Pictures / Gifs of your work should go here.  You need to communicate what your thing does.
-<img src=" " alt=" ">
+<img src="WIN-20210917-15-13-41-Pro.gif" alt="light">
 ### Wiring
 The only requirement is a board.
 ### Reflection
