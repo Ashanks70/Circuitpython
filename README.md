@@ -79,7 +79,7 @@ while True:
 ```
 
 ### Evidence
-
+<img src="WIN_20210915_15_19_20_Pro.gif" alt="servopic">
 ### Wiring
 
 <img src="Servo.PNG" alt="servo">
