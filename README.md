@@ -82,7 +82,7 @@ while True:
 
 ### Wiring
 
-<img src="Servo.png" alt="servo">
+<img src="Servo.PNG" alt="servo">
 
 ### Reflection
 
