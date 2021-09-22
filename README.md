@@ -96,21 +96,56 @@ Limits are a very good idea when you have a shifting number. forgetting them cos
 
 
 
-## CircuitPython_LCD
+## CircuitPython_sensor
 
 ### Description & Code
-
+this code makes a LED change color based on the distance to an object
 ```python
-Code goes here
+
+import time
+import board
+import adafruit_hcsr04
+import neopixel
+
+dot = neopixel.NeoPixel(board.NEOPIXEL, 1)
+dot.brightness = 0.1
+sonar = adafruit_hcsr04.HCSR04(trigger_pin=board.D5, echo_pin=board.D6)
+r = 0
+g = 0
+b = 0
+
+while True:
+    try:
+        print(sonar.distance)
+        if sonar.distance <= 15:
+            r =  abs(round(sonar.distance-5 / 15*255))
+        if sonar.distance >= 10 and sonar.distance <= 30:
+            b = abs(round(sonar.distance-5 / 15*255))
+        if sonar.distance >= 25:
+            g = abs(round(sonar.distance-5 / 15*255))
+        if sonar.distance > 25:
+            r = 0
+        if sonar.distance < 10 or sonar.distance > 30:
+            b = 0
+        if sonar.distance < 30:
+            g = 0
+        print(r, g, b)
+    except RuntimeError:
+        g = 255
+        print("retrying")
+    dot.fill((r, g, b))
+    time.sleep(0.3)
+	
+
 
 ```
 
 ### Evidence
-
+<img src="https://github.com/Ashanks70/Circuitpython/blob/main/WIN_20210922_15_36_08_Pro.gif" alt="sensor">
 ### Wiring
 
 ### Reflection
-
+this one was very hard I had to make sure to round the number and take the absolute value to make sure the light did not bug out.
 
 
 
