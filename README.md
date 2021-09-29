@@ -184,7 +184,8 @@ while True:
 ```
 
 ### Evidence
-
+<img src="photointerrupter.gif" alt="servopic">
 ### Wiring
 
 ### Reflection
+I learned how to use time monotonic and I also learned how much of a pain it can end up being. make sure that your new base is set to time monotonic.
