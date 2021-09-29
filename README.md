@@ -150,12 +150,36 @@ this one was very hard I had to make sure to round the number and take the absol
 
 
 
-## NextAssignment
+## photointerrupter
 
 ### Description & Code
-
+this make the metro track the number of times that a photointerrupter has triggered.
 ```python
-Code goes here
+import board
+import time
+from digitalio import DigitalInOut, Direction, Pull
+
+interrupter = DigitalInOut(board.D10)
+interrupter.direction = Direction.INPUT
+interrupter.pull = Pull.UP
+start = time.time()
+t = 0
+c = 0
+p = 0
+second = 1
+passed = 4
+total = 0
+scount = 0
+counter = 0
+while True:
+    if time.monotonic() > total + passed:
+        total += 4
+        print("triggered:",counter,"times this rotation.")
+        counter = 0
+    elif interrupter.value == True and time.monotonic() > scount + second:
+        counter += 1
+        scount += 1
+
 
 ```
 
