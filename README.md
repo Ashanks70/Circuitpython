@@ -100,7 +100,7 @@ while True:
     time.sleep(.1)
 ```
 ### Evidence
-<img src="lcdscreen.gif" alt="lcd">
+<img src="lcd screen.gif" alt="gif">
 ### Wiring
 
 ### Reflection
