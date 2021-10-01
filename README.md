@@ -53,8 +53,58 @@ The only requirement is a board.
 The largest difficulty was learning python syntax and how to make it work correctly. I had to makke sure it was a += and a -= until I made it choose randomly
 
 
+## CircuitPython_LCD
 
+### Description & Code
+this code makes the lcd display a counter which counts and changes with capacitive touch.
+```python
+import board
+from lcd.lcd import LCD
+from lcd.i2c_pcf8574_interface import I2CPCF8574Interface
+import time
+import touchio
 
+# get and i2c object
+i2c = board.I2C()
+touch_A1 = touchio.TouchIn(board.A1)  
+touch_A2 = touchio.TouchIn(board.A0)  
+c = 0
+d = 1
+b = 0
+s = 0
+# some LCDs are 0x3f... some are 0x27.
+lcd = LCD(I2CPCF8574Interface(i2c, 0x3f), num_rows=2, num_cols=16)
+while True:
+    lcd.clear()
+    if touch_A2.value and b == 0:
+        if d == 1:
+            c+=1
+        if d == 0:
+            c-=1
+        b = 1
+    if touch_A1.value and s == 0:
+        if d == 0:
+            d = 1
+        elif d == 1:
+            d = 0
+        s = 1
+    if not touch_A2.value:
+        b = 0
+    if not touch_A1.value:
+        s = 0
+    lcd.print(str(c))
+    if d == 0:
+        lcd.print(" down")
+    if d == 1:
+        lcd.print(" up")
+    time.sleep(.1)
+```
+### Evidence
+
+### Wiring
+
+### Reflection
+this project was very simple I just had to wire up an LCD and then make sure it only went once per wire touch. you should always remember to clear your LCD in between repetitions.
 ## CircuitPython_Servo
 
 ### Description & Code
@@ -79,9 +129,6 @@ while True:
         print("there")
     my_servo.angle = A
     time.sleep(0.005)
-    
-
-
 ```
 
 ### Evidence
