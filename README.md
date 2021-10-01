@@ -143,7 +143,7 @@ while True:
 ### Evidence
 <img src="https://github.com/Ashanks70/Circuitpython/blob/main/WIN_20210922_15_36_08_Pro.gif" alt="sensor">
 ### Wiring
-
+<img src="ultrasonic.PNG" alt="sensor">
 ### Reflection
 this one was very hard I had to make sure to round the number and take the absolute value to make sure the light did not bug out.
 
@@ -186,6 +186,6 @@ while True:
 ### Evidence
 <img src="photointerrupter.gif" alt="servopic">
 ### Wiring
-
+<img src="photointerrupter.PNG" alt="servopic">
 ### Reflection
 I learned how to use time monotonic and I also learned how much of a pain it can end up being. make sure that your new base is set to time monotonic.
