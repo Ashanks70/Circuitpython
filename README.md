@@ -236,3 +236,50 @@ while True:
 <img src="photoresistor.PNG" alt="photointerupterw">
 ### Reflection
 I learned how to use time monotonic and I also learned how much of a pain it can end up being. make sure that your new base is set to time monotonic.
+
+
+
+### BACON
+
+
+```python
+import board
+import touchio
+import time
+import pulseio
+buzzer = pulseio.PWMOut(board.D0, variable_frequency=True)
+touch_A1 = touchio.TouchIn(board.A1)
+touch_A3 = touchio.TouchIn(board.A3)
+pushed = 0
+pushed2 = 0
+n1 = 50
+d1 = 0
+passed = 0
+occur = 0
+OFF = 0
+ON = 2**15
+start = time.time()
+
+while True:
+    if touch_A1.value == True:
+        if pushed == 0:
+            print(n1)
+            pushed = 1
+            passed = time.monotonic()
+    elif touch_A1.value == False and pushed == 1:
+        d1 = time.monotonic()-passed
+        pushed = 0
+        print(d1)
+        time.sleep(.5)
+    if touch_A3.value == True:
+        if pushed2 == 0:
+            buzzer.duty_cycle = ON
+            occur = time.monotonic()
+            
+            pushed2 = 1
+    elif touch_A3.value == False and pushed2 == 1:
+        pushed2 = 0
+    buzzer.frequency = n1
+    if time.monotonic()-d1 >= occur:
+        buzzer.duty_cycle = OFF
+```
