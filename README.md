@@ -249,20 +249,26 @@ import time
 import pulseio
 buzzer = pulseio.PWMOut(board.D0, variable_frequency=True)
 touch_A1 = touchio.TouchIn(board.A1)
+touch_A0 = touchio.TouchIn(board.A0)
 touch_A3 = touchio.TouchIn(board.A3)
+touch_A5 = touchio.TouchIn(board.A5)
 pushed = 0
 pushed2 = 0
+pushed3 = 0
+pushed4 = 0
 n1 = 50
 d1 = 0
 passed = 0
 occur = 0
 OFF = 0
+noteChoice = 44
 ON = 2**15
 start = time.time()
 
 while True:
     if touch_A1.value == True:
         if pushed == 0:
+            n1 = (440*(2**(1/12))**(noteChoice-49))
             print(n1)
             pushed = 1
             passed = time.monotonic()
@@ -279,7 +285,21 @@ while True:
             pushed2 = 1
     elif touch_A3.value == False and pushed2 == 1:
         pushed2 = 0
-    buzzer.frequency = n1
+    if touch_A0.value == True:
+        if pushed3 == 0:
+            pushed3 = 1
+            noteChoice+=1
+    elif touch_A0.value == False and pushed3 == 1:
+        pushed3=0
+    if touch_A5.value == True:
+        if pushed4 == 0:
+            pushed4 = 1
+            noteChoice -= 1
+    elif touch_A5.value == False and pushed4 == 1:
+        pushed4 == 0
+    buzzer.frequency = round(n1)
     if time.monotonic()-d1 >= occur:
         buzzer.duty_cycle = OFF
+    if time.monotonic() % 2 == 0:
+        print(n1)
 ```
