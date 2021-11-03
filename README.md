@@ -247,25 +247,32 @@ import board
 import touchio
 import time
 import pulseio
+#establish piezobuzzer
 buzzer = pulseio.PWMOut(board.D0, variable_frequency=True)
+#touch variable
 touch_A1 = touchio.TouchIn(board.A1)
 touch_A0 = touchio.TouchIn(board.A0)
 touch_A3 = touchio.TouchIn(board.A3)
-touch_A5 = touchio.TouchIn(board.A5)
+touch_A4 = touchio.TouchIn(board.A4)
+#single push triggers
 pushed = 0
 pushed2 = 0
 pushed3 = 0
 pushed4 = 0
+#first note
 n1 = 50
 d1 = 0
+#duration helpers
 passed = 0
 occur = 0
+#piezobuzzer playing
 OFF = 0
 noteChoice = 44
 ON = 2**15
 start = time.time()
 
 while True:
+#modify note and time
     if touch_A1.value == True:
         if pushed == 0:
             n1 = (440*(2**(1/12))**(noteChoice-49))
@@ -277,6 +284,7 @@ while True:
         pushed = 0
         print(d1)
         time.sleep(.5)
+#play
     if touch_A3.value == True:
         if pushed2 == 0:
             buzzer.duty_cycle = ON
@@ -285,21 +293,28 @@ while True:
             pushed2 = 1
     elif touch_A3.value == False and pushed2 == 1:
         pushed2 = 0
+#up
     if touch_A0.value == True:
         if pushed3 == 0:
             pushed3 = 1
-            noteChoice+=1
+            if noteChoice < 88:
+                noteChoice+=1
     elif touch_A0.value == False and pushed3 == 1:
         pushed3=0
-    if touch_A5.value == True:
+#down
+    if touch_A4.value == True:
         if pushed4 == 0:
             pushed4 = 1
-            noteChoice -= 1
-    elif touch_A5.value == False and pushed4 == 1:
+            if noteChoice > 1:
+                noteChoice=noteChoice-1
+    elif touch_A4.value == False and pushed4 == 1:
         pushed4 == 0
+#make note readable
     buzzer.frequency = round(n1)
+#off
     if time.monotonic()-d1 >= occur:
         buzzer.duty_cycle = OFF
+#show current frequency
     if time.monotonic() % 2 == 0:
         print(n1)
 ```
